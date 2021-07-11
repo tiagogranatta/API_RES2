@@ -2,26 +2,30 @@ class Tabelas {
     init(conexao){
         this.conexao = conexao
 
-        this.criarAtendimento()
+        this.criarCliente()
+
+        
     }
 
-    criarAtendimento() {
+    criarCliente() {
         const sql = `CREATE TABLE IF NOT EXISTS
-        Atendimentos (id int NOT NULL
-        AUTO_INCREMENT, cliente varchar(50) NOT
-        NULL, pet varchar(20), servico varchar(20)
-        NOT NULL, status varchar(20) NOT NULL,
-        observacoes text, PRIMARY KEY(id))`
+        Cliente (id int NOT NULL
+        AUTO_INCREMENT, Nome varchar(50) NOT
+        NULL, Sexo enum('M','F'), DataNascimento date,
+        Telefone varchar(20), Email varchar(50),
+        Endereco varchar(100), Bairro varchar(50),
+        Cidade varchar(50), Estado char(2),
+        PRIMARY KEY(id))`
+
 
         this.conexao.query(sql, erro => {
             if (erro) {
                 console.log(erro)
             }else {
-                console.log('Tablea Atendimentos criada com sucesso')
+                console.log('Tablea Clientes criada com sucesso')
             }
         })
 
     }
 }
-
 module.exports = new Tabelas
